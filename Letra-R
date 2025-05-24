@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pasapalabra Darío P. A.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Fredoka One', cursive;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      padding: 30px 15px;
+      text-align: center;
+      color: #a3c4f3; /* pastel blue */
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255,255,255,0.6);
+      z-index: -1;
+    }
+
+    .container {
+      background-color: #ffffff;
+      border: 10px solid #bcdffb; /* soft pastel blue */
+      border-radius: 25px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+      padding: 25px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #7aaedb; /* pastel blue */
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.4em;
+      color: #6db3d0; /* complementary pastel blue */
+    }
+
+    .question {
+      background-color: #bbdefb; /* pastel blue */
+      padding: 14px;
+      font-size: 1.4em;
+      border-radius: 10px;
+      margin: 20px auto;
+      display: inline-block;
+      border: 3px dashed #90caf9; /* stronger border color */
+      color: #000;
+    }
+
+    input[type="text"] {
+      padding: 15px;
+      width: 90%;
+      font-size: 1.2em;
+      border: 3px solid #bcdffb;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button {
+      padding: 15px 30px;
+      background: #b3e5fc;
+      color: #333;
+      border: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #81d4fa;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.3em;
+      font-weight: bold;
+      display: none;
+    }
+
+    .success {
+      color: #2e7d32;
+    }
+
+    .error {
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h1>Pasapalabra Dario P. A.</h1>
+    <h2>¡Escribe tu respuesta para conseguir la letra del día!</h2>
+    <div class="question">Empieza por la letra r:<br><br>Nombre del presentador de Pasapalabra</div>
+    <input type="text" id="answer" placeholder="Escribe aquí..." />
+    <button onclick="checkAnswer()">Adelante</button>
+    <p class="result success" id="successMessage">🎊 ¡Respuesta correcta! ¡Felicidades! Ahora puedes poner la letra correspondiente en el panel.</p>
+    <p class="result error" id="errorMessage">❌ Incorrecto, inténtalo de nuevo.</p>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById("answer").value.trim();
+      const correctAnswer = "Sare";
+      const success = document.getElementById("successMessage");
+      const error = document.getElementById("errorMessage");
+
+      if (input === correctAnswer) {
+        success.style.display = "block";
+        error.style.display = "none";
+        
+      } else {
+        success.style.display = "none";
+        error.style.display = "block";
+      }
+    }
+
+    function showBrickDrop(message) {
+      const brick = document.createElement("div");
+      brick.className = "brick-drop";
+      brick.innerText = message;
+      document.body.appendChild(brick);
+      setTimeout(() => {
+        brick.remove();
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
