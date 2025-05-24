@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unlock Your Secret Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      display: none;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Answer the Question to Reveal Your Secret Code</h2>
+    <p><strong>What is the capital of France?</strong></p>
+    <input type="text" id="answer" placeholder="Type your answer here">
+    <br>
+    <button onclick="checkAnswer()">Submit</button>
+    <p class="result success" id="successMessage">✅ Your secret code is: <strong>123ABC</strong></p>
+    <p class="result error" id="errorMessage">❌ Incorrect answer. Please try again.</p>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById("answer").value.trim();
+      const correctAnswer = "Paris"; // Case-sensitive
+      const success = document.getElementById("successMessage");
+      const error = document.getElementById("errorMessage");
+
+      if (input === correctAnswer) {
+        success.style.display = "block";
+        error.style.display = "none";
+      } else {
+        success.style.display = "none";
+        error.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
