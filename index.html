@@ -12,7 +12,7 @@
       background-size: cover;
       padding: 30px 15px;
       text-align: center;
-      color: #a3c4f3; /* pastel blue */
+      color: #a3c4f3;
       position: relative;
       overflow-x: hidden;
     }
@@ -28,7 +28,7 @@
 
     .container {
       background-color: #ffffff;
-      border: 10px solid #bcdffb; /* soft pastel blue */
+      border: 10px solid #bcdffb;
       border-radius: 25px;
       box-shadow: 0 0 15px rgba(0,0,0,0.15);
       padding: 25px;
@@ -38,23 +38,23 @@
 
     h1 {
       font-size: 2.5em;
-      color: #7aaedb; /* pastel blue */
+      color: #7aaedb;
       margin-bottom: 10px;
     }
 
     h2 {
       font-size: 1.4em;
-      color: #6db3d0; /* complementary pastel blue */
+      color: #6db3d0;
     }
 
     .question {
-      background-color: #bbdefb; /* pastel blue */
+      background-color: #bbdefb;
       padding: 14px;
       font-size: 1.4em;
       border-radius: 10px;
       margin: 20px auto;
       display: inline-block;
-      border: 3px dashed #90caf9; /* stronger border color */
+      border: 3px dashed #90caf9;
       color: #000;
     }
 
@@ -95,10 +95,46 @@
 
     .success {
       color: #2e7d32;
+      animation: bounce 1s ease;
     }
 
     .error {
       color: #c62828;
+    }
+
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(0.95); }
+      75% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #e1f5fe;
+      border: 3px solid #81d4fa;
+      border-radius: 15px;
+      padding: 30px;
+      font-size: 1.5em;
+      color: #2e7d32;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 10;
+      animation: popup 0.4s ease, glow 1.5s ease-in-out infinite;
+    }
+
+    @keyframes popup {
+      0% { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
+      100% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(46, 125, 50, 0.5); }
+      50% { box-shadow: 0 0 40px rgba(46, 125, 50, 0.9); }
     }
   </style>
 </head>
@@ -106,40 +142,30 @@
   <div class="overlay"></div>
 
   <div class="container">
-    <h1>Pasapalabra Dario P. A.</h1>
+    <h1>Pasapalabra Darío P. A.</h1>
     <h2>¡Escribe tu respuesta para conseguir la letra del día!</h2>
     <div class="question">Empieza por la letra S:<br><br>Vivo en Bruselas, y soy de color blanco, negro y naranja. Me gusta esconderme pero si me dejas trozos de comida en el sofá, ¡por la noche me los zampo todos!<br><br>¿Quién soy?</div>
     <input type="text" id="answer" placeholder="Escribe aquí..." />
-    <button onclick="checkAnswer()">Comprobar respuesta</button>
-    <p class="result success" id="successMessage">🎊 ¡Respuesta correcta! ¡Felicidades! Ahora puedes poner la letra correspondiente en el panel.</p>
+    <button onclick="checkAnswer()">Comprueba tu respuesta</button>
     <p class="result error" id="errorMessage">❌ Incorrecto, inténtalo de nuevo.</p>
   </div>
+
+  <div class="popup" id="popupMessage">🎊 ¡Respuesta correcta! ¡Felicidades! Ahora puedes poner la letra correspondiente en el panel.</div>
 
   <script>
     function checkAnswer() {
       const input = document.getElementById("answer").value.trim();
       const correctAnswer = "Sare";
-      const success = document.getElementById("successMessage");
+      const popup = document.getElementById("popupMessage");
       const error = document.getElementById("errorMessage");
 
       if (input === correctAnswer) {
-        success.style.display = "block";
+        popup.style.display = "block";
         error.style.display = "none";
-        
       } else {
-        success.style.display = "none";
+        popup.style.display = "none";
         error.style.display = "block";
       }
-    }
-
-    function showBrickDrop(message) {
-      const brick = document.createElement("div");
-      brick.className = "brick-drop";
-      brick.innerText = message;
-      document.body.appendChild(brick);
-      setTimeout(() => {
-        brick.remove();
-      }, 2500);
     }
   </script>
 </body>
